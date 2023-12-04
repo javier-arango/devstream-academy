@@ -1,4 +1,5 @@
 import { Image } from '@nextui-org/react'
+import { generateImageBluerURL } from '@utils/generateImageBluerUrl.utils'
 import NextImage from 'next/image'
 
 export interface ThumbnailProps {
@@ -32,6 +33,7 @@ export const Thumbnail = ({
       isBlurred={isBlurred}
       isZoomed={isZoomed}
       radius={radius}
+      fallbackSrc={generateImageBluerURL(105, 105, 105)}
       classNames={{
         wrapper: 'relative w-full aspect-video padding-top-16x9',
         img: 'absolute inset-0 opacity-100 transition-opacity duration-500 ease-in-out',
