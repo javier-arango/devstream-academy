@@ -1,27 +1,73 @@
 {
   "name": "devstream-academy",
+  "author": "Javier Arango",
+  "description": "Your ultimate platform for discovering, learning, and mastering computer science through curated videos.",
   "version": "0.1.0",
+  "keywords": [
+    "DevStream Academy"
+  ],
+  "engines": {
+    "node": ">=18",
+    "npm": ">=9"
+  },
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "production:build": "npx prisma generate && npx prisma migrate deploy && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "prepare": "husky install",
+    "test": "jest",
+    "postinstall": "prisma generate",
+    "prisma:seed": "npx dotenv -e .env.local -- prisma db seed",
+    "prisma:push": "npx dotenv -e .env.local -- prisma db push",
+    "prisma:pull": "npx dotenv -e .env.local -- prisma db pull",
+    "prisma:migrate": "npx dotenv -e .env.local -- prisma migrate dev --name init",
+    "prisma:generate": "npx dotenv -e .env.local -- prisma generate",
+    "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
+    "gen:yt-data": "dotenv -e .env.local -- ts-node --skip-project scripts/generateYTData.scripts.ts"
+  },
+  "prisma": {
+    "seed": "dotenv -e .env.local -- ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
+    "@nextui-org/react": "^2.2.9",
+    "@prisma/client": "^5.5.2",
+    "bcrypt": "^5.1.1",
+    "date-fns": "^2.30.0",
+    "dotenv-cli": "^7.3.0",
+    "framer-motion": "^10.16.5",
+    "googleapis": "^128.0.0",
+    "next": "13.5.6",
+    "next-auth": "^4.24.5",
+    "next-themes": "^0.2.1",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.3"
+    "react-hook-form": "^7.48.2",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.12.0",
+    "react-youtube": "^10.1.0",
+    "swr": "^2.2.4"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8",
-    "eslint-config-next": "14.0.3"
+    "eslint-config-next": "13.5.6",
+    "eslint-config-prettier": "^9.0.0",
+    "husky": "^8.0.0",
+    "postcss": "^8.4.31",
+    "prettier": "^3.0.3",
+    "prisma": "^5.5.2",
+    "tailwindcss": "^3.3.5",
+    "ts-node": "^10.9.1",
+    "typescript": "^5"
   }
 }

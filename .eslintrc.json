@@ -1,3 +1,31 @@
+// This project is using the @typescript-eslint plugin for eslint checks
+// Here is the documentation for every check -> https://typescript-eslint.io/rules/
 {
-  "extends": "next/core-web-vitals"
+  "ignorePatterns": [
+    "*.json",
+    "**/*.json",
+    "next.config.js",
+    "postcss.config.js",
+    "tailwind.config.js"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "prefer-const": "error",
+    "@next/next/no-async-client-component": "error",
+    "@next/next/no-html-link-for-pages": "error",
+    "@next/next/no-img-element": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-confusing-non-null-assertion": "error"
+  }
 }

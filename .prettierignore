@@ -1,0 +1,6 @@
+.next
+*.md
+dist
+node_modules
+.github
+build
