@@ -56,7 +56,7 @@ model User {
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
   password  String
-  avatar    String?    @default("https://res.cloudinary.com/dp28illl8/image/upload/v1698787786/profile/default_avatar.jpg")
+  avatar    String?
   bio       String?
   playlists Playlist[]
 }
