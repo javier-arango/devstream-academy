@@ -1,7 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">DevStream Academy</h1>
+<h3 align="center">Fuel Your Code. Spark Your Journey.</h3>
+
+<br/>
+
+<p align="center">
+    <img src="https://github.com/javier-arango/devstream-academy/actions/workflows/lint_test_build.yml/badge.svg" />
+    <img src="https://github.com/javier-arango/devstream-academy/actions/workflows/pr_validation.yml/badge.svg" />
+    <img src="https://therealsujitk-vercel-badge.vercel.app/?app=devstream-academy" />
+</p>
+
+
+<p align="center">DevStream Academy is your one-stop educational platform designed exclusively for computer science students. Whether you're delving into algorithms, exploring backend development, or learning front-end frameworks, DevStream Academy offers an expansive collection of curated educational videos to guide your journey. With features that allow users to categorize videos, create personalized playlists, and dive deeper into specific topics, we're here to accelerate your learning process and elevate your coding skills.</p>
+
+## Table of Contents
+- [Getting Started](#getting-started)
+    - [Development Server](#development-server)
+    - [Database Setup with Prisma](#database-setup-with-prisma)
+      - [Migration](#migration)
+      - [Manual Seeding](#manual-seeding)
+      - [Visualize the Database](#visualize-the-database)
+- [Contribution](#contribution)
+- [Helpful Resources](#helpful-resources)
+- [License](#license)
 
 ## Getting Started
 
+### Development Server
 First, run the development server:
 
 ```bash
@@ -20,17 +44,64 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+### Database Setup with Prisma
 
-To learn more about Next.js, take a look at the following resources:
+This project is configured with Prisma, an advanced Object-Relational Mapping (ORM) to facilitate seamless database operations. Follow the steps below for both development and testing environments.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Migration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Run the migration command to establish the database schema. Prisma Migrate uses your migration files to manage the schema changes:
 
-## Deploy on Vercel
+```bash
+npm run prisma:migrate
+# or
+yarn prisma:migrate
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+> **Note:** Prisma Migrate integrates with seeds. When it resets the development database, it automatically triggers the seeding.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Manual Seeding
+
+Execute the seeding command to populate your database with predefined data essential for testing. Modify the `prisma/seed.ts` file if you wish to make changes to the default seeding data:
+
+```bash
+npm run prisma:seed
+# or
+yarn prisma:seed
+```
+
+#### Visualize the Database
+
+Prisma Studio provides a graphical interface, enabling you to visualize and manage your database records effortlessly. You can run the following command to start Prisma Studio:
+
+```bash
+npm run prisma:studio
+# or
+yarn prisma:studio
+```
+
+Visit [http://localhost:5555](http://localhost:5555/) to access Prisma Studio and manage your database interactively.
+
+## Contribution
+
+Contributions to DevStream Academy are welcomed! Please refer to the [CONTRIBUTING.md](https://github.com/javier-arango/devstream-academy/blob/main/CONTRIBUTING.md) file for guidelines on how to make meaningful additions to our platform.
+
+## Helpful Resources
+#### Supabase
+- [Supabase Prisma Integration](https://supabase.com/partners/integrations/prisma)
+
+#### Prisma
+- [Using Prisma with Supabase](https://www.prisma.io/docs/guides/database/supabase)
+- [Prisma CRUD](https://www.prisma.io/docs/concepts/components/prisma-client/crud)
+- [Connection management](https://www.prisma.io/docs/guides/performance-and-optimization/connection-management#serverless-environments-faas)
+- [DB Relations](https://www.prisma.io/docs/concepts/components/prisma-schema/relations)
+- [Implicit Many to Many Relation](https://www.prisma.io/docs/concepts/components/prisma-schema/relations/many-to-many-relations#implicit-many-to-many-relations)
+
+#### Next.js
+- [Route Handlers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- [Pages and Layouts](https://nextjs.org/docs/app/building-your-application/routing/pages-and-layouts)
+- [Data Fetching, Caching, and Revalidating](https://nextjs.org/docs/app/building-your-application/data-fetching/fetching-caching-and-revalidating)
+- [Fetching Data on the Client with third-party libraries](https://swr.vercel.app/docs/getting-started)
+
+## License
+This project is released under the [MIT License](https://github.com/javier-arango/cinemify/blob/main/LICENSE)

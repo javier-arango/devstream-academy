@@ -7,7 +7,7 @@ const getBaseURL = () => {
       return getEnvVariable('NEXT_PUBLIC_URL')
     }
 
-    return `https://${getEnvVariable('VERCEL_URL')}`
+    return `https://devstream-academy.vercel.app`
   }
 
   return window.location.origin
