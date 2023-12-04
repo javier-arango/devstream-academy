@@ -12,9 +12,9 @@ import { Providers } from './providers'
 const roboto = Roboto({ weight: '400', style: 'normal', subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Codeflix',
+  title: 'DevStream Academy',
   description:
-    'Codeflix aims to be the ultimate destination for movie enthusiasts, providing a comprehensive and interactive platform to explore, review, and watch films.',
+    'DevStream Academy aims to be the ultimate destination for movie enthusiasts, providing a comprehensive and interactive platform to explore, review, and watch films.',
 }
 
 export default async function RootLayout({
