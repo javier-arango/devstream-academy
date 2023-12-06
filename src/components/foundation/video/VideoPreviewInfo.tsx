@@ -32,7 +32,7 @@ export const VideoPreviewInfo = ({
           <Link href={`/channel/${channelData.channelId}`}>
             <Avatar showFallback size="md" src={channelData.thumbnailUrl} />
           </Link>
-        ) }
+        )}
 
         {/* Channel Info */}
         <div className="flex flex-col gap-1 items-start justify-center">
@@ -57,7 +57,7 @@ export const VideoPreviewInfo = ({
                 </h4>
               </Link>
             </Tooltip>
-          ) }
+          )}
 
           {/* Video stats (only vertical) */}
           {alignment === 'vertical' && (
