@@ -1,13 +1,13 @@
 'use client'
 
-import { Avatar, Card, CardBody, Link, Tooltip } from '@nextui-org/react'
+import { Card, CardBody } from '@nextui-org/react'
 import type { Channel } from '@prisma/client'
 import { fetcher } from '@utils/fetcher.utils'
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
 import type { VideoPreviewDetails } from 'types'
 import { Thumbnail } from '../Thumbnail'
-import { ChannelProfileSkeleton } from '../skeleton'
+import { VideoPreviewInfo } from './VideoPreviewInfo'
 
 interface VideoPreviewProps {
   video: VideoPreviewDetails
@@ -91,53 +91,16 @@ export const VideoPreview = ({
                 </div>
               )}
 
-              {/* Channel Info */}
-              {isLoading && <ChannelProfileSkeleton />}
-              {data && !isLoading && (
-                <div
-                  className={`flex gap-4 ${
-                    alignment === 'vertical' && 'items-start pt-2'
-                  }`}
-                >
-                  {/* Channel Avatar */}
-                  {!hideAvatar && (
-                    <Link href={`/channel/${channelId}`}>
-                      <Avatar showFallback size="md" src={data.thumbnailUrl} />
-                    </Link>
-                  )}
-
-                  {/* Channel Info */}
-                  <div className="flex flex-col gap-1 items-start justify-center">
-                    {/* Video title (only vertical) */}
-                    {alignment === 'vertical' && (
-                      <h1 className="font-bold text-base">{videoTitle}</h1>
-                    )}
-
-                    {/* Channel title */}
-                    <Tooltip
-                      size="lg"
-                      color="foreground"
-                      offset={20}
-                      delay={0}
-                      closeDelay={0}
-                      content={data.title}
-                    >
-                      <Link href={`/channel/${channelId}`}>
-                        <h4 className="text-sm font-semibold leading-none text-default-500">
-                          {data.title}
-                        </h4>
-                      </Link>
-                    </Tooltip>
-
-                    {/* Video stats (only vertical) */}
-                    {alignment === 'vertical' && (
-                      <p className="text-default-500 text-sm">
-                        {videoViewsCount} views • {videoPublishedAt}
-                      </p>
-                    )}
-                  </div>
-                </div>
-              )}
+              {/* Video & Channel Info */}
+              <VideoPreviewInfo
+                channelData={data}
+                videoTitle={videoTitle}
+                videoViewsCount={videoViewsCount}
+                videoPublishedAt={videoPublishedAt}
+                alignment={alignment}
+                hideAvatar={hideAvatar}
+                isLoading={isLoading}
+              />
 
               {/* Video Description */}
               {!hideDescription && (

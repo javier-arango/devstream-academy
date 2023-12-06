@@ -38,7 +38,7 @@ export const VideoListWithCategorySelect = ({
         />
       </div>
 
-      <div className='"px-2 py-4 lg:p-8 md:p-4"'>
+      <div className="px-2 py-4 lg:p-8 md:p-4">
         {filteredVideos.length === 0 ? (
           <WarningMessage
             title="No videos found"

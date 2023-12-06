@@ -86,6 +86,24 @@ export async function SearchVideosByQuery(query: string) {
   return videos
 }
 
+export async function SearchAutocompleteSuggestions(query: string) {
+  // Search autocomplete suggestions
+  const results = await prisma.video.findMany({
+    where: {
+      title: {
+        contains: query,
+        mode: 'insensitive', // Case-insensitive
+      },
+    },
+    select: {
+      title: true, // Only return the title
+    },
+    take: 5, // Limit the number of suggestions
+  })
+
+  return results
+}
+
 // Read services for Playlists
 export async function GetPlaylist(id: string): Promise<PlaylistDetails | null> {
   // Find the playlist in the database

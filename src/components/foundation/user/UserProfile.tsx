@@ -4,12 +4,16 @@ import {
   Accordion,
   AccordionItem,
   Avatar,
+  Button,
   Card,
   CardBody,
   CardHeader,
+  Link,
   Spacer,
 } from '@nextui-org/react'
+// import { useRouter } from 'next/navigation'
 import React from 'react'
+import { FaPen } from 'react-icons/fa6'
 import type { UserDetails } from 'types'
 
 interface UserProfileProps {
@@ -18,6 +22,7 @@ interface UserProfileProps {
 }
 
 export const UserProfile = ({ user, children }: UserProfileProps) => {
+  // const router = useRouter()
   return (
     <Card
       shadow="none"
@@ -27,37 +32,49 @@ export const UserProfile = ({ user, children }: UserProfileProps) => {
         base: 'bg-transparent',
       }}
     >
-      <CardHeader>
-        <div className="flex flex-row justify-between">
-          <div className="flex gap-4">
-            {/* User avatar */}
-            <Avatar
-              showFallback
-              className="lg:w-32 lg:h-32"
-              radius="full"
-              size="lg"
-              src={user.avatar || ''}
-            />
+      <CardHeader className="flex flex-row justify-between flex-wrap gap-8">
+        <div className="flex gap-4">
+          {/* User avatar */}
+          <Avatar
+            showFallback
+            className="lg:w-32 lg:h-32"
+            radius="full"
+            size="lg"
+            src={user.avatar || ''}
+          />
 
-            {/* User info */}
-            <div className="flex flex-col gap-1 items-start justify-center">
-              <h1 className="text-xl lg:text-3xl font-bold leading-none text-default-600">
-                {user.firstName + ' ' + user.lastName}
-              </h1>
+          {/* User info */}
+          <div className="flex flex-col gap-1 items-start justify-center">
+            <h1 className="text-xl lg:text-3xl font-bold leading-none text-default-600">
+              {user.firstName + ' ' + user.lastName}
+            </h1>
 
-              {/* User join date */}
-              <h5 className="text-small lg:text-base tracking-tight text-default-400">
-                {`Joined on ${new Date(user.createdAt).toLocaleDateString(
-                  'en-US',
-                  {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                  }
-                )}`}
-              </h5>
-            </div>
+            {/* User join date */}
+            <h5 className="text-small lg:text-base tracking-tight text-default-400">
+              {`Joined on ${new Date(user.createdAt).toLocaleDateString(
+                'en-US',
+                {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric',
+                }
+              )}`}
+            </h5>
           </div>
+        </div>
+
+        {/* Edit profile */}
+        <div className="flex flex-col gap-1 items-start justify-center w-full md:w-auto">
+          <Button
+            fullWidth
+            variant="flat"
+            color="primary"
+            startContent={<FaPen />}
+            as={Link}
+            href="/user/profile/edit"
+          >
+            Edit Profile
+          </Button>
         </div>
       </CardHeader>
       <CardBody>

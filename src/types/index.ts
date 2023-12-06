@@ -5,6 +5,17 @@ export interface SearchResponse {
   result: Video[]
 }
 
+export interface SuggestionResponse {
+  count: number
+  suggestions:
+    | [
+        {
+          title: string
+        },
+      ]
+    | []
+}
+
 export interface VideoListResponse {
   count: number
   videos: Video[]
