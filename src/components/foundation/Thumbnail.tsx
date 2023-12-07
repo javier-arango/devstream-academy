@@ -7,10 +7,11 @@ export interface ThumbnailProps {
   alt: string
   priority?: boolean
   isBlurred?: boolean
-  isZoomed?: boolean
   radius?: 'none' | 'sm' | 'md' | 'lg' | 'full'
   shadow?: 'none' | 'sm' | 'md' | 'lg'
   style?: React.CSSProperties
+  fallbackSrc?: string
+  className?: string
 }
 
 export const Thumbnail = ({
@@ -18,10 +19,11 @@ export const Thumbnail = ({
   alt,
   priority = false,
   isBlurred = false,
-  isZoomed = false,
   shadow = 'none',
   radius = 'none',
+  fallbackSrc = generateImageBluerURL(105, 105, 105),
   style,
+  className,
 }: ThumbnailProps) => {
   return (
     <Image
@@ -31,9 +33,9 @@ export const Thumbnail = ({
       style={style}
       shadow={shadow}
       isBlurred={isBlurred}
-      isZoomed={isZoomed}
       radius={radius}
-      fallbackSrc={generateImageBluerURL(105, 105, 105)}
+      fallbackSrc={fallbackSrc}
+      className={className}
       classNames={{
         wrapper: 'relative w-full aspect-video padding-top-16x9',
         img: 'absolute inset-0 opacity-100 transition-opacity duration-500 ease-in-out',

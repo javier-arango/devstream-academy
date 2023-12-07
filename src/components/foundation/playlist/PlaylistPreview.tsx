@@ -43,16 +43,13 @@ export const PlaylistPreview = ({
   }
 
   return (
-    <div className="relative">
+    <div className="relative w-full md:w-auto">
       <Card
         shadow="none"
         isPressable
         radius="none"
         allowTextSelectionOnPress
-        className="lg:w-[210px] md:w-[210px] w-full"
-        classNames={{
-          base: 'bg-transparent',
-        }}
+        className="lg:w-[210px] md:w-[210px] w-full bg-transparent"
         onPress={() => {
           router.push(`/user/playlist/${id}`)
         }}
@@ -62,9 +59,10 @@ export const PlaylistPreview = ({
             {/* Thumbnail */}
             <div className="relative">
               <>
+                {/* Thumbnail */}
                 <Thumbnail
                   shadow="sm"
-                  radius="lg"
+                  radius="md"
                   alt={description || 'Playlist thumbnail'}
                   src={thumbnail || generateImageBluerURL(200, 200, 200)}
                 />

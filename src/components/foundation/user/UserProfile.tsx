@@ -36,6 +36,7 @@ export const UserProfile = ({ user, children }: UserProfileProps) => {
         <div className="flex gap-4">
           {/* User avatar */}
           <Avatar
+            isBordered
             showFallback
             className="lg:w-32 lg:h-32"
             radius="full"

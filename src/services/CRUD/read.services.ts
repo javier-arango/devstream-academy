@@ -200,17 +200,30 @@ export async function GetAllUserPlaylists(
           videos: true,
         },
       },
+      videos: {
+        take: 1, // Take only the first video
+        select: {
+          thumbnailUrl: true, // Select only the thumbnail URL
+        },
+      },
     },
   })
 
-  return playlists.map(
-    (playlist) =>
-      ({
-        id: playlist.id,
-        name: playlist.name,
-        description: playlist.description,
-        userId: playlist.userId,
-        videoCount: playlist._count.videos,
-      }) as PlaylistDetails
-  )
+  return playlists.map((playlist) => {
+    // Create the basic playlist details object
+    const playlistDetails: PlaylistDetails = {
+      id: playlist.id,
+      name: playlist.name,
+      description: playlist.description ?? '',
+      userId: userId,
+      videoCount: playlist._count.videos,
+    }
+
+    // If there are videos in the playlist, add the thumbnail
+    if (playlist.videos.length > 0) {
+      playlistDetails.thumbnail = playlist.videos[0].thumbnailUrl
+    }
+
+    return playlistDetails
+  })
 }

@@ -68,7 +68,7 @@ export const AppNavBar = ({
       <>
         <div className="flex flex-row gap-2 pb-2">
           {/* User avatar */}
-          <Avatar showFallback size="sm" src={image} />
+          <Avatar isBordered showFallback size="sm" src={image} />
 
           {/* User name */}
           <div className="flex flex-col gap-1 items-start justify-center">
