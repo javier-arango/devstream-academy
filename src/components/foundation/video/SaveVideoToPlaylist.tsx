@@ -204,8 +204,18 @@ export const SaveVideoToPlaylist = ({
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const [openCreatePlaylistForm, setOpenCreatePlaylistForm] = useState(false)
 
+  const handleModalOpenChange = (isOpen: boolean) => {
+    onOpenChange()
+
+    // Reset the openCreatePlaylistForm state when the modal is closed
+    if (!isOpen) {
+      setOpenCreatePlaylistForm(false)
+    }
+  }
+
   return (
     <>
+      {/* Modal action button */}
       <Tooltip
         color="foreground"
         delay={0}
@@ -216,18 +226,19 @@ export const SaveVideoToPlaylist = ({
           color="primary"
           radius="full"
           startContent={<AiOutlinePlusSquare />}
-          variant={'solid'}
+          variant="solid"
           onPress={onOpen}
         >
           Save
         </Button>
       </Tooltip>
 
+      {/* Modal */}
       <Modal
         size="xs"
         isOpen={isOpen}
         backdrop="opaque"
-        onOpenChange={onOpenChange}
+        onOpenChange={handleModalOpenChange}
       >
         <ModalContent>
           {(onClose) => (

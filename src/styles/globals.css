@@ -5,3 +5,7 @@
 .padding-top-16x9 {
   padding-top: 56.25%; /* 16:9 Aspect Ratio */
 }
+
+.capitalize-first::first-letter {
+  text-transform: uppercase;
+}

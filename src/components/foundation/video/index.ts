@@ -1,3 +1,4 @@
+export * from './SaveVideoToPlaylist'
 export * from './VideoList'
 export * from './VideoListWithCategorySelect'
 export * from './VideoMetadata'

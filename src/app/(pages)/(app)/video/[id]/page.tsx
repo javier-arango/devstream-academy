@@ -1,20 +1,22 @@
 import {
+  SaveVideoToPlaylist,
   VideoDetailsSkeleton,
   VideoMetadata,
   VideoPlayer,
   WarningMessage,
 } from '@components/foundation'
-import { SaveVideoToPlaylist } from '@components/foundation/video/SaveVideoToPlaylist'
-import { Skeleton } from '@nextui-org/react'
 
+import { Skeleton } from '@nextui-org/react'
 import type { Channel, Video } from '@prisma/client'
-import { getChannelDetails, getVideoDetails } from '@services/API'
-import { getUserPlaylists } from '@services/API/getUserPlaylists.services'
+import {
+  getChannelDetails,
+  getUserPlaylists,
+  getVideoDetails,
+} from '@services/API'
 import { authOptions } from 'app/api/auth/[...nextauth]/route'
 import type { Session } from 'next-auth'
 import { getServerSession } from 'next-auth'
 import { Suspense } from 'react'
-import { AiFillWarning } from 'react-icons/ai'
 import type { PlaylistListResponse } from 'types'
 
 interface VideoDetailsProps {
@@ -106,18 +108,15 @@ export default async function VideoPage({
 
   if (!videoDetails) {
     return (
-      <div className="flex flex-col items-center justify-center w-screen h-screen">
-        <AiFillWarning className="text-6xl text-default-500" />
-        <h1 className="text-2xl font-bold">Video not found</h1>
-        <p className="text-default-500 text-sm">
-          An error occurred while trying to fetch the video
-        </p>
-      </div>
+      <WarningMessage
+        title="Video not found"
+        subtitle="An error occurred while trying to fetch the video"
+      />
     )
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
       <VideoPlayer
         id="video-details-player"
         title={videoDetails.title}

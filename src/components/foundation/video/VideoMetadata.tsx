@@ -45,15 +45,22 @@ export const VideoMetadata = ({
   children,
 }: VideoMetadataProps) => {
   return (
-    <Card fullWidth radius="none">
+    <Card
+      fullWidth
+      radius="none"
+      shadow="none"
+      classNames={{
+        base: 'bg-transparent p-0 md:p-4',
+      }}
+    >
       <CardHeader>
         <div className="flex flex-col gap-4 w-full">
-          <h1 className="text-default-900 text-lg font-semibold">
+          <h1 className="text-default-900 text-xl font-extrabold capitalize-first">
             {videoTitle}
           </h1>
 
           {/* Channel info */}
-          <div className="flex flex-row justify-between">
+          <div className="flex flex-row justify-between flex-wrap gap-4">
             <div className="flex gap-4">
               {/* Channel avatar */}
               <Link href={`/channel/${channelId}`}>
@@ -89,8 +96,8 @@ export const VideoMetadata = ({
         </div>
       </CardHeader>
 
-      <CardBody className="px-3 py-0 text-small text-default-400">
-        <Accordion fullWidth defaultExpandedKeys={['2']}>
+      <CardBody className="text-small text-default-400">
+        <Accordion fullWidth variant="shadow">
           <AccordionItem
             key="1"
             aria-label={`${formatToCompactNumber(
