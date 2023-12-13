@@ -37,7 +37,8 @@ export const Thumbnail = ({
       fallbackSrc={fallbackSrc}
       className={className}
       classNames={{
-        wrapper: 'relative w-full aspect-video padding-top-16x9',
+        // Add added !max-w-full because the image was not showing in Safari or iOS
+        wrapper: 'relative w-full aspect-video padding-top-16x9 !max-w-full',
         img: 'absolute inset-0 opacity-100 transition-opacity duration-500 ease-in-out',
       }}
       priority={priority}

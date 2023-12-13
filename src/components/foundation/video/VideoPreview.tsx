@@ -75,7 +75,7 @@ export const VideoPreview = ({
             </div>
 
             {/* Right Size */}
-            <div className="flex flex-col col-span-6 md:col-span-8 lg:gap-3 md:gap-2 gap-1 h-full px-4 md:pl-0 lg:pl-0 md:pr-5 lg:pr-3">
+            <div className="flex flex-col col-span-6 md:col-span-8 lg:gap-3 md:gap-2 gap-1  px-4 md:pl-0 lg:pl-0 md:pr-5 lg:pr-3">
               {/* Video Info (only horizontal) */}
               {alignment === 'horizontal' && (
                 <div className="flex flex-col gap-1 md:gap-0">
