@@ -1,5 +1,6 @@
 import {
   SaveVideoToPlaylist,
+  SaveVideoToPlaylistNotUser,
   VideoDetailsSkeleton,
   VideoMetadata,
   VideoPlayer,
@@ -75,7 +76,7 @@ async function VideoDetails({
       likesCount={videoDetails.likesCount}
       publishedAt={videoDetails.publishedAt}
     >
-      {userEmail && (
+      {userEmail ? (
         <Suspense
           fallback={
             <div className="h-screen">
@@ -88,6 +89,8 @@ async function VideoDetails({
             videoId={videoDetails.videoId}
           />
         </Suspense>
+      ) : (
+        <SaveVideoToPlaylistNotUser videoId={videoDetails.videoId} />
       )}
     </VideoMetadata>
   )

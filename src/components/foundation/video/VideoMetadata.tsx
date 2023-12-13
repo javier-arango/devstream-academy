@@ -55,7 +55,7 @@ export const VideoMetadata = ({
     >
       <CardHeader>
         <div className="flex flex-col gap-4 w-full">
-          <h1 className="text-default-900 text-xl font-extrabold capitalize-first">
+          <h1 className="text-default-900 text-lg md:text-xl font-extrabold capitalize-first">
             {videoTitle}
           </h1>
 

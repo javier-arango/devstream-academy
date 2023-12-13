@@ -2,7 +2,7 @@
 
 import { Button, Input, Link } from '@nextui-org/react'
 import { signIn } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useState } from 'react'
 import type { SubmitHandler } from 'react-hook-form'
 import { useForm } from 'react-hook-form'
@@ -18,6 +18,7 @@ interface AuthFormData {
 
 export const AuthForm = ({ type }: { type: 'login' | 'register' }) => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false)
+  const callbackUrl = useSearchParams().get('callbackUrl') || '/' // Redirect to home page if no callbackUrl is provided
   const router = useRouter()
   const {
     register,
@@ -37,13 +38,14 @@ export const AuthForm = ({ type }: { type: 'login' | 'register' }) => {
         email: data.email,
         password: data.password,
         redirect: false,
+        callbackUrl,
       })
 
       if (res && res.error) {
         toast.error('Invalid email or password. Please try again.')
       } else {
         router.refresh()
-        router.push('/')
+        router.push(callbackUrl)
       }
     } else {
       // Register onSubmit
