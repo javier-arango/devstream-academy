@@ -1,10 +1,13 @@
-import { ChannelMetadata, VideoList } from '@components/foundation'
+import {
+  ChannelMetadata,
+  VideoList,
+  WarningMessage,
+} from '@components/foundation'
 import { Divider, Spinner } from '@nextui-org/react'
 import type { Channel } from '@prisma/client'
 import { getChannelDetails, getChannelVideos } from '@services/API'
 import { formatToCompactNumber } from '@utils/formatData.utils'
 import { Suspense } from 'react'
-import { AiFillWarning } from 'react-icons/ai'
 import type { VideoListResponse } from 'types'
 
 interface VideoListGridProps {
@@ -19,11 +22,10 @@ async function VideoListGrid({ channelId }: VideoListGridProps) {
   // If no videos, return no videos message
   if (!channelVideoList.videos) {
     return (
-      <div className="flex flex-col items-center justify-center w-screen h-screen">
-        <AiFillWarning className="text-6xl text-default-500" />
-        <h1 className="text-2xl font-bold">No videos found</h1>
-        <p className="text-default-500 text-sm">An error might have ocurred</p>
-      </div>
+      <WarningMessage
+        title="No videos found"
+        subtitle="An error might have ocurred"
+      />
     )
   }
 
@@ -49,13 +51,11 @@ export default async function ChannelPage({
 
   if (!channelDetails) {
     return (
-      <div className="flex flex-col items-center justify-center w-screen h-screen">
-        <AiFillWarning className="text-6xl text-default-500" />
-        <h1 className="text-2xl font-bold">Channel not found</h1>
-        <p className="text-default-500 text-sm">
-          An error occurred while trying to fetch the channel
-        </p>
-      </div>
+      <WarningMessage
+        type="error"
+        title="Channel not found"
+        subtitle="An error occurred while trying to fetch the channel"
+      />
     )
   }
 
