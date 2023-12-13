@@ -100,6 +100,7 @@ export const VideoMetadata = ({
         <Accordion fullWidth variant="shadow">
           <AccordionItem
             key="1"
+            isCompact
             aria-label={`${formatToCompactNumber(
               viewsCount
             )} views ${formatPublishedAt(publishedAt)}`}
