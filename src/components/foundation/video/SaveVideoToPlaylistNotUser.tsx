@@ -54,7 +54,7 @@ export const SaveVideoToPlaylistNotUser = ({
         size="sm"
         isOpen={isOpen}
         backdrop="opaque"
-        placement='center'
+        placement="center"
         onOpenChange={onOpenChange}
       >
         <ModalContent>
