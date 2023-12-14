@@ -61,6 +61,7 @@ export const ChannelMetadata = ({
       <CardBody className="px-3 text-small text-default-400">
         <Accordion fullWidth defaultExpandedKeys={['2']} variant="shadow">
           <AccordionItem
+            isCompact
             key="1"
             aria-label={`${formatToCompactNumber(
               viewsCount

@@ -3,17 +3,15 @@ import { Link } from '@nextui-org/react'
 
 export const Footer = () => {
   return (
-    <footer className="border-t-1 border-gray-400">
-      <div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div className="sm:flex sm:items-center sm:justify-between">
+    <footer className="border-t-1 border-gray-400 py-8 mt-8">
+      <div className="flex flex-wrap flex-col items-center gap-12 w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div className="w-full flex flex-col md:flex-row gap-8 items-center justify-between">
           <Logo />
 
-          <div className="mb-6 mt-6 sm:mb-0 sm:mt-0">
-            <ThemeSwitcher />
-          </div>
+          <ThemeSwitcher />
         </div>
 
-        <span className="block text-default-400 sm:text-center my-6 sm:mx-auto lg:my-8">
+        <span className="block text-default-400 text-center">
           Created with ♥ by{' '}
           <Link
             isExternal
