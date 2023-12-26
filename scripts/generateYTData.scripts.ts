@@ -1,11 +1,11 @@
+import type { Channel, Video } from '@prisma/client'
 import fs from 'fs'
-import path from 'path'
-import { google } from 'googleapis'
-import { getEnvVariable } from '../src/utils/getEnvVariable.utils'
-import { VIDEO_CATEGORIES } from '../src/constants/videoCategories.constants'
 import type { youtube_v3 } from 'googleapis'
+import { google } from 'googleapis'
+import path from 'path'
 import type { Category } from '../src/constants/videoCategories.constants'
-import type { Video, Channel } from '@prisma/client'
+import { VIDEO_CATEGORIES } from '../src/constants/videoCategories.constants'
+import { getEnvVariable } from '../src/utils/getEnvVariable.utils'
 
 interface YouTubeData {
   videos: Video[]
@@ -68,7 +68,7 @@ class YoutubeDataRetriever {
       thumbnailUrl: this.getHighestResThumbnailUrl(videoSnippet.thumbnails!),
       viewsCount: Number(videoStatistics.viewCount!) | 0,
       likesCount: Number(videoStatistics.likeCount!) | 0,
-      commentsCount: Number(videoStatistics.commentCount) | 0,
+      commentsCount: 0,
     }
   }
 
@@ -111,11 +111,11 @@ class YoutubeDataRetriever {
     maxResultsPerCategory: number
   ): Promise<Video[]> {
     try {
-      // Fetch videos
-      const response = await this.youtube.search.list({
+      const query = `("${categoryValue}") AND ("tutorial" | "lecture" | "course" | "class" | "lesson" | "educational" | "guide" | "workshop" | "seminar") -entertainment -game -vlog`
+      const youtubeOptions = {
         part: ['snippet'],
         maxResults: maxResultsPerCategory,
-        q: `${categoryValue} full course for computer science students`,
+        q: query,
         type: ['video'],
         videoCaption: 'closedCaption',
         videoDefinition: 'high',
@@ -123,8 +123,11 @@ class YoutubeDataRetriever {
         topicId: '/m/01k8wb', // Knowledge
         relevanceLanguage: 'en',
         videoEmbeddable: 'true',
-        videoDuration: 'long',
-      })
+        videoDuration: 'any',
+      }
+
+      // Fetch videos
+      const response = await this.youtube.search.list(youtubeOptions)
 
       const videos = (
         await Promise.all(

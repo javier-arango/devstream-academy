@@ -53,7 +53,7 @@ NEXT_PUBLIC_CLOUDINARY_SECRET_KEY={YOUR_SECRET_KEY}
 
 # Supabase credentials
 DIRECT_URL={YOUR_DIRECT_URL}
-DATABASE_URL={YOUR_DATABASE_URL}
+DATABASE_URL={YOUR_DATABASE_URL}?pgbouncer=true&connect_timeout=300
 
 # NextAuth.js credentials
 # https://next-auth.js.org/configuration/options#nextauth_secret

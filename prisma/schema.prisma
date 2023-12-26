@@ -25,6 +25,7 @@ model Video {
   channelId     String
   channel       Channel    @relation(fields: [channelId], references: [channelId])
   playlists     Playlist[] @relation("PlaylistToVideo")
+  comments      Comment[]
 }
 
 model Playlist {
@@ -59,4 +60,16 @@ model User {
   avatar    String?
   bio       String?
   playlists Playlist[]
+  comments  Comment[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  videoId   String
+  video     Video    @relation(fields: [videoId], references: [videoId])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
 }

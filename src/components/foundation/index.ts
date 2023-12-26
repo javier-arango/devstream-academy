@@ -6,6 +6,7 @@ export * from './Thumbnail'
 export * from './WarningMessage'
 
 export * from './channel'
+export * from './comments'
 export * from './skeleton'
 export * from './user'
 export * from './video'

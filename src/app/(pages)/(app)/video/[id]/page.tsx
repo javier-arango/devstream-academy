@@ -1,4 +1,5 @@
 import {
+  CommentSection,
   SaveVideoToPlaylist,
   SaveVideoToPlaylistNotUser,
   VideoDetailsSkeleton,
@@ -126,6 +127,7 @@ export default async function VideoPage({
         videoId={videoDetails.videoId}
       />
 
+      {/* Video details */}
       <Suspense
         fallback={
           <div className="h-screen">
@@ -139,6 +141,9 @@ export default async function VideoPage({
           videoDetails={videoDetails}
         />
       </Suspense>
+
+      {/* Video comments */}
+      <CommentSection />
     </div>
   )
 }
