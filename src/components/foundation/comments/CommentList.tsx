@@ -6,7 +6,7 @@ interface CommentListProps {
 
 export const CommentList = ({ comments }: CommentListProps) => {
   return (
-    <div className='flex flex-col gap-8'>
+    <div className="flex flex-col gap-8">
       {comments.map((comment, index) => (
         <Comment
           key={index}
